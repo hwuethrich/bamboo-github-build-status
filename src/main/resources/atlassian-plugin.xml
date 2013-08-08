@@ -1,0 +1,30 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <preBuildAction key="buildPendingAction" name="Build Pending Action"
+                    class="ch.oxon.bamboo.github_build_status.BuildPendingAction">
+        <description>Notifies Github about the pending build.</description>
+    </preBuildAction>
+
+    <postBuildCompletedAction key="buildResultAction" name="Build Result Action"
+                              class="ch.oxon.bamboo.github_build_status.BuildResultAction">
+        <description>Notifies Github about the build result.</description>
+    </postBuildCompletedAction>
+
+    <additionalBuildConfigurationPlugin key="planConfig" name="Build Configuration"
+                                        class="ch.oxon.bamboo.github_build_status.PlanConfiguration">
+        <description>Plugin to configure maximum number of concurrent builds for a plan</description>
+        <resource type="freemarker" name="edit" location="plan_config/edit.ftl"/>
+        <resource type="freemarker" name="view" location="plan_config/view.ftl"/>
+    </additionalBuildConfigurationPlugin>
+
+    <!-- import from the product container -->
+    <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties" />
+    
+</atlassian-plugin>
