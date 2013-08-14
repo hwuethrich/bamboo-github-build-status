@@ -7,21 +7,24 @@
         <param name="plugin-logo">images/pluginLogo.png</param>
     </plugin-info>
 
-    <preBuildAction key="buildPendingAction" name="Build Pending Action"
-                    class="ch.oxon.bamboo.github_build_status.BuildPendingAction">
-        <description>Notifies Github about the pending build.</description>
-    </preBuildAction>
+    <!-- add i18n resource -->
+    <resource type="i18n" name="i18n" location="i18n" />
 
-    <postBuildCompletedAction key="buildResultAction" name="Build Result Action"
-                              class="ch.oxon.bamboo.github_build_status.BuildResultAction">
+    <preChainAction key="buildPendingAction" name="Build Pending Action"
+                    class="ch.oxon.bamboo.github.build_status.BuildPendingAction">
+        <description>Notifies Github about the pending build.</description>
+    </preChainAction>
+
+    <postChainAction key="buildResultAction" name="Build Result Action"
+                     class="ch.oxon.bamboo.github.build_status.BuildResultAction">
         <description>Notifies Github about the build result.</description>
-    </postBuildCompletedAction>
+    </postChainAction>
 
     <additionalBuildConfigurationPlugin key="planConfig" name="Build Configuration"
-                                        class="ch.oxon.bamboo.github_build_status.PlanConfiguration">
+                                        class="ch.oxon.bamboo.github.build_status.BuildStatusConfigurator">
         <description>Plugin to configure maximum number of concurrent builds for a plan</description>
-        <resource type="freemarker" name="edit" location="plan_config/edit.ftl"/>
-        <resource type="freemarker" name="view" location="plan_config/view.ftl"/>
+        <resource type="freemarker" name="edit" location="build_status/edit.ftl"/>
+        <resource type="freemarker" name="view" location="build_status/view.ftl"/>
     </additionalBuildConfigurationPlugin>
 
     <!-- import from the product container -->
