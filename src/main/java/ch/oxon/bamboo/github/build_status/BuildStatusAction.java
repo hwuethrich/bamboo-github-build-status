@@ -9,7 +9,9 @@ import com.atlassian.bamboo.v2.build.BuildRepositoryChanges;
 import com.atlassian.spring.container.ContainerManager;
 import org.eclipse.egit.github.core.CommitStatus;
 import org.eclipse.egit.github.core.RepositoryId;
+import org.eclipse.egit.github.core.client.GitHubClient;
 import org.eclipse.egit.github.core.service.CommitService;
+import static org.eclipse.egit.github.core.client.IGitHubConstants.HOST_API;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -60,8 +62,14 @@ public class BuildStatusAction {
         service.createStatus(repo, sha, status);
     }
 
+    protected GitHubClient getGithubClient() {
+        String hostname = configuration.get(BuildStatusConfigurator.GITHUB_HOST);
+
+        return new GitHubClient(hostname);
+    }
+
     protected CommitService getGithubCommitService() {
-        CommitService service = new CommitService();
+        CommitService service = new CommitService(getGithubClient());
 
         String token = configuration.get(BuildStatusConfigurator.GITHUB_TOKEN);
         service.getClient().setOAuth2Token(token);
