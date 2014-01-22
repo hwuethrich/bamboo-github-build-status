@@ -15,6 +15,7 @@ import java.util.Map;
 public class BuildStatusConfigurator extends BaseBuildConfigurationAwarePlugin implements MiscellaneousBuildConfigurationPlugin {
 
     public static String ENABLED      = "custom.githubBuildStatus.enabled";
+    public static String GITHUB_HOST  = "custom.githubBuildStatus.githubHost";
     public static String GITHUB_OWNER = "custom.githubBuildStatus.githubOwner";
     public static String GITHUB_REPO  = "custom.githubBuildStatus.githubRepo";
     public static String GITHUB_TOKEN = "custom.githubBuildStatus.githubToken";

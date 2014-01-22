@@ -4,6 +4,11 @@
     toggle='true' /]
 
     [@ui.bambooSection dependsOn='custom.githubBuildStatus.enabled' showOn='true']
+        [@ww.textfield labelKey='githubBuildStatus.githubHost'
+        name='custom.githubBuildStatus.githubHost'
+        required='true'
+        /]
+
         [@ww.textfield labelKey='githubBuildStatus.githubOwner'
         name='custom.githubBuildStatus.githubOwner'
         required='true'
