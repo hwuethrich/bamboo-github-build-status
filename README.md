@@ -1,4 +1,4 @@
-# Bamboo build results for Github
+# Bamboo build status for Github
 
 I quickly put this plugin together so the result of each build in Bamboo is pushed to Github using their commit status API.
 
